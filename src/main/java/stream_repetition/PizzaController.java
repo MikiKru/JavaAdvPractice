@@ -23,12 +23,39 @@ public class PizzaController {
                 .sum();
     }
     private Pizza findCheapestSpicy(){
-        return getAllSpicy().stream().min(Comparator.comparing(pizza -> calculatePizzaPrice(pizza))).get();
+        return Arrays.stream(Pizza.values())
+                .filter(pizza -> pizza.getIngredients().stream().anyMatch(ingredient -> ingredient.isSpicy()))
+                .min(Comparator.comparing(pizza -> calculatePizzaPrice(pizza)))
+                .get();
     }
+    private Pizza findMostExpensiveVergetarian(){
+        return Arrays.stream(Pizza.values())
+                .filter(pizza -> pizza.getIngredients().stream().anyMatch(ingredient -> !ingredient.isMeat()))
+                .max(Comparator.comparing(pizza -> calculatePizzaPrice(pizza)))
+                .get();
+    }
+    private String formattedMenu(){
+        return Arrays.stream(Pizza.values())
+                .map(pizza ->
+                {
+                    return String.format("Pizza: %15s | Składniki: %-100s | Cena: %d",
+                            pizza.getName(),
+                            pizza.getIngredients().stream()
+                                    .map(ingredient -> ingredient.getName())
+                                    .collect(Collectors.joining(", ")),
+                            calculatePizzaPrice(pizza));
+                }).collect(Collectors.joining("\n"));
+    }
+
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
-//        pc.getAllPizzas();
-        System.out.println(pc.getAllSpicy());
-        System.out.println(pc.findCheapestSpicy());
+        System.out.println(pc.formattedMenu());
+        //        pc.getAllPizzas();
+//        System.out.println(pc.getAllSpicy());
+        System.out.printf("Nazwa: %s | Cena: %d PLN\n",
+                pc.findCheapestSpicy(), pc.calculatePizzaPrice(pc.findCheapestSpicy()));
+        System.out.printf("Nazwa: %s | Cena: %d PLN\n",
+                pc.findMostExpensiveVergetarian(), pc.calculatePizzaPrice(pc.findMostExpensiveVergetarian()));
+
     }
 }
