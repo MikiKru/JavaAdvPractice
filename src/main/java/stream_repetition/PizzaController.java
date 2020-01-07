@@ -2,6 +2,7 @@ package stream_repetition;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.List;
@@ -15,24 +16,19 @@ public class PizzaController {
                 .filter(pizza -> pizza.getIngredients().stream().anyMatch(Ingredient::isSpicy))
                 .collect(Collectors.toList());
     }
+    private int calculatePizzaPrice(Pizza pizza){
+        return pizza.getIngredients()
+                .stream()
+                .mapToInt(Ingredient::getPrice)
+                .sum();
+    }
     private Pizza findCheapestSpicy(){
-        for (Pizza p : getAllSpicy()) {
-            int cumSum = 0;
-            for(Ingredient i : p.getIngredients()){
-                cumSum += i.getPrice();
-            }
-            System.out.println("Pizza: " + p + " cena: " +cumSum);
-        }
-        return null;
-//        return getAllSpicy().stream()
-//                .forEach(pizza -> pizza.getIngredients().stream().forEach(ingredient -> {
-//                    cumSum += ingredient.getPrice();
-//                }));
+        return getAllSpicy().stream().min(Comparator.comparing(pizza -> calculatePizzaPrice(pizza))).get();
     }
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
 //        pc.getAllPizzas();
         System.out.println(pc.getAllSpicy());
-        pc.findCheapestSpicy();
+        System.out.println(pc.findCheapestSpicy());
     }
 }
