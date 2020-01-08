@@ -78,11 +78,22 @@ public class PizzaController {
                                                 .count()))
                 .collect(Collectors.toList());
     }
+    // zwraca nazwę pizzy z nazwami jej skłaników mięsnych
+    private String getPizzaWithMeatIngredients(Pizza pizza){
+        return pizza.getName() + " | " +pizza.getIngredients().stream()
+                    .map(ingredient -> String.format("%s \n",
+                                            pizza.getIngredients().stream()
+                                                    .filter(ingred1 -> ingred1.isMeat())
+                                                    .map(ingred2 -> ingred2.getName())
+                                                    .collect(Collectors.joining(", "))))
+                    .collect(Collectors.joining());
+    }
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
-        pc.iLikeMeatOrderByMeatIngredients().forEach(pizza -> System.out.printf("%15s | %10d \n",
+        pc.iLikeMeatOrderByMeatIngredients().forEach(pizza -> System.out.printf("%15s | %10d | %10s \n",
                 pizza,
-                pc.calculatePizzaPrice(pizza)));
+                pc.calculatePizzaPrice(pizza),
+                pc.getPizzaWithMeatIngredients(pizza)));
 
         //        System.out.println(pc.formattedMenuOrderByPrice());
 //        //        pc.getAllPizzas();
