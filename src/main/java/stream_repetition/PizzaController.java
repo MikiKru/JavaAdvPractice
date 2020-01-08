@@ -88,12 +88,18 @@ public class PizzaController {
                                                     .collect(Collectors.joining(", "))))
                     .collect(Collectors.joining());
     }
+    // grupowanie pizz po cenie
+    private Map groupPizzasByPrice(){
+        return Arrays.stream(Pizza.values())
+                .collect(Collectors.groupingBy(pizza -> calculatePizzaPrice(pizza)));
+    }
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
-        pc.iLikeMeatOrderByMeatIngredients().forEach(pizza -> System.out.printf("%15s | %10d | %10s \n",
-                pizza,
-                pc.calculatePizzaPrice(pizza),
-                pc.getPizzaWithMeatIngredients(pizza)));
+        pc.groupPizzasByPrice().forEach((key, value) -> System.out.println(key + " : " + value));
+//        pc.iLikeMeatOrderByMeatIngredients().forEach(pizza -> System.out.printf("%15s | %10d | %10s \n",
+//                pizza,
+//                pc.calculatePizzaPrice(pizza),
+//                pc.getPizzaWithMeatIngredients(pizza)));
 
         //        System.out.println(pc.formattedMenuOrderByPrice());
 //        //        pc.getAllPizzas();
