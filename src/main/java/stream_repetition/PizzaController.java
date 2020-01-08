@@ -62,16 +62,29 @@ public class PizzaController {
                                     .collect(Collectors.joining(", ")));
                 }).collect(Collectors.joining("\n"));
     }
+    // zawaca pizze mięsne posortowanie po ilości wszystkich składników
+    private List<Pizza> iLikeMeat(){
+        return Arrays.stream(Pizza.values())
+                .filter(pizza -> pizza.getIngredients().stream().anyMatch(ingredient -> ingredient.isMeat()))
+                .sorted(Comparator.comparing(pizza -> pizza.getIngredients().size()))
+                .collect(Collectors.toList());
+    }
+    // zwraca pizze mięsne posotrowane po ilości składików mięsnych
 
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
-        System.out.println(pc.formattedMenuOrderByPrice());
-        //        pc.getAllPizzas();
-//        System.out.println(pc.getAllSpicy());
-        System.out.printf("Nazwa: %s | Cena: %d PLN\n",
-                pc.findCheapestSpicy(), pc.calculatePizzaPrice(pc.findCheapestSpicy()));
-        System.out.printf("Nazwa: %s | Cena: %d PLN\n",
-                pc.findMostExpensiveVergetarian(), pc.calculatePizzaPrice(pc.findMostExpensiveVergetarian()));
+        pc.iLikeMeat().forEach(pizza -> System.out.printf("%15s | %10d | %5d \n",
+                pizza,
+                pc.calculatePizzaPrice(pizza),
+                pizza.getIngredients().size()));
+
+        //        System.out.println(pc.formattedMenuOrderByPrice());
+//        //        pc.getAllPizzas();
+////        System.out.println(pc.getAllSpicy());
+//        System.out.printf("Nazwa: %s | Cena: %d PLN\n",
+//                pc.findCheapestSpicy(), pc.calculatePizzaPrice(pc.findCheapestSpicy()));
+//        System.out.printf("Nazwa: %s | Cena: %d PLN\n",
+//                pc.findMostExpensiveVergetarian(), pc.calculatePizzaPrice(pc.findMostExpensiveVergetarian()));
 
     }
 }
