@@ -1,5 +1,9 @@
 package threads;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.Period;
 import java.util.Arrays;
 
 public class ThreadController extends Thread {
@@ -10,9 +14,8 @@ public class ThreadController extends Thread {
         }
     }
 
-    public static void main(String[] args) {
-        String [] names = {"Ala", "Ola", "Ela", "Adam", "Jan"};
-        Arrays.stream(names).forEach(System.out::println);
+    public static void main(String[] args) throws InterruptedException {
+        LocalTime start = LocalTime.now();
         ThreadController tc1 = new ThreadController();
         ThreadController tc2 = new ThreadController();
         ThreadController tc3 = new ThreadController();
@@ -21,7 +24,14 @@ public class ThreadController extends Thread {
         tc2.start();
         tc3.start();
         tc4.start();
-
+        // join() -> determinuje ropoczęcie działania po wykonaniu wątku
+        tc1.join();
+        tc2.join();
+        tc3.join();
+        tc4.join();
+        LocalTime stop = LocalTime.now();
+        Duration p = Duration.between(start, stop);
+        System.out.println("Czas wykonywania: " + p.toMillis() + "ms");
 
     }
 }
