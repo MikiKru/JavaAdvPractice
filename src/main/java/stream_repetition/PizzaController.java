@@ -70,13 +70,19 @@ public class PizzaController {
                 .collect(Collectors.toList());
     }
     // zwraca pizze mięsne posotrowane po ilości składików mięsnych
-
+    private List<Pizza> iLikeMeatOrderByMeatIngredients(){
+        return Arrays.stream(Pizza.values())
+                .filter(pizza -> pizza.getIngredients().stream().anyMatch(ingredient -> ingredient.isMeat()))
+                .sorted(Comparator.comparing(pizza -> pizza.getIngredients().stream()
+                                                .filter(ingredient -> ingredient.isMeat())
+                                                .count()))
+                .collect(Collectors.toList());
+    }
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
-        pc.iLikeMeat().forEach(pizza -> System.out.printf("%15s | %10d | %5d \n",
+        pc.iLikeMeatOrderByMeatIngredients().forEach(pizza -> System.out.printf("%15s | %10d \n",
                 pizza,
-                pc.calculatePizzaPrice(pizza),
-                pizza.getIngredients().size()));
+                pc.calculatePizzaPrice(pizza)));
 
         //        System.out.println(pc.formattedMenuOrderByPrice());
 //        //        pc.getAllPizzas();
