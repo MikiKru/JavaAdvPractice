@@ -1,12 +1,11 @@
 package stream_repetition;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.List;
+
 public class PizzaController {
+
     private void getAllPizzas(){
         Arrays.stream(Pizza.values()).forEach(System.out::println);
     }
@@ -30,7 +29,7 @@ public class PizzaController {
     }
     private Pizza findMostExpensiveVergetarian(){
         return Arrays.stream(Pizza.values())
-                .filter(pizza -> pizza.getIngredients().stream().anyMatch(ingredient -> !ingredient.isMeat()))
+                .filter(pizza -> pizza.getIngredients().stream().allMatch(ingredient -> !ingredient.isMeat()))
                 .max(Comparator.comparing(pizza -> calculatePizzaPrice(pizza)))
                 .get();
     }
@@ -38,18 +37,35 @@ public class PizzaController {
         return Arrays.stream(Pizza.values())
                 .map(pizza ->
                 {
-                    return String.format("Pizza: %15s | Składniki: %-100s | Cena: %d",
+                    return String.format("Pizza: %15s | Cena %d PLN | Składniki: %-100s",
                             pizza.getName(),
+                            calculatePizzaPrice(pizza),
                             pizza.getIngredients().stream()
                                     .map(ingredient -> ingredient.getName())
-                                    .collect(Collectors.joining(", ")),
-                            calculatePizzaPrice(pizza));
+                                    .collect(Collectors.joining(", ")));
+                }).collect(Collectors.joining("\n"));
+    }
+    private List<Pizza> getAllPizzasOrderByPrice(){
+        return Arrays.stream(Pizza.values())
+                .sorted(Comparator.comparing(pizza -> calculatePizzaPrice(pizza)))
+                .collect(Collectors.toList());
+    }
+    private String formattedMenuOrderByPrice(){
+        return getAllPizzasOrderByPrice().stream()
+                .map(pizza ->
+                {
+                    return String.format("Pizza: %15s | Cena %d PLN | Składniki: %-100s",
+                            pizza.getName(),
+                            calculatePizzaPrice(pizza),
+                            pizza.getIngredients().stream()
+                                    .map(ingredient -> ingredient.getName())
+                                    .collect(Collectors.joining(", ")));
                 }).collect(Collectors.joining("\n"));
     }
 
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
-        System.out.println(pc.formattedMenu());
+        System.out.println(pc.formattedMenuOrderByPrice());
         //        pc.getAllPizzas();
 //        System.out.println(pc.getAllSpicy());
         System.out.printf("Nazwa: %s | Cena: %d PLN\n",
