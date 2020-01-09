@@ -80,13 +80,10 @@ public class PizzaController {
     }
     // zwraca nazwę pizzy z nazwami jej skłaników mięsnych
     private String getPizzaWithMeatIngredients(Pizza pizza){
-        return pizza.getName() + " | " +pizza.getIngredients().stream()
-                    .map(ingredient -> String.format("%s \n",
-                                            pizza.getIngredients().stream()
-                                                    .filter(ingred1 -> ingred1.isMeat())
-                                                    .map(ingred2 -> ingred2.getName())
-                                                    .collect(Collectors.joining(", "))))
-                    .collect(Collectors.joining());
+        return pizza.getIngredients().stream()
+                                    .filter(Ingredient::isMeat)
+                                    .map(Ingredient::getName)
+                                    .collect(Collectors.joining(","));
     }
     // grupowanie pizz po cenie
     private Map groupPizzasByPrice(){
@@ -96,10 +93,10 @@ public class PizzaController {
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
         pc.groupPizzasByPrice().forEach((key, value) -> System.out.println(key + " : " + value));
-//        pc.iLikeMeatOrderByMeatIngredients().forEach(pizza -> System.out.printf("%15s | %10d | %10s \n",
-//                pizza,
-//                pc.calculatePizzaPrice(pizza),
-//                pc.getPizzaWithMeatIngredients(pizza)));
+        pc.iLikeMeatOrderByMeatIngredients().forEach(pizza -> System.out.printf("%15s | %10d | %-s \n",
+                pizza,
+                pc.calculatePizzaPrice(pizza),
+                pc.getPizzaWithMeatIngredients(pizza)));
 
         //        System.out.println(pc.formattedMenuOrderByPrice());
 //        //        pc.getAllPizzas();
