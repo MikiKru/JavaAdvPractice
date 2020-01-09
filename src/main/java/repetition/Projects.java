@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public interface Projects {
-    List<Project> projects = new ArrayList<>(
+    List<ProjectsFounds> projects = new ArrayList<>(
             Arrays.asList(
                     new ProjectsFounds("SmartCity", 1_500_000.,20,80.,"IT", Month.of(36)),
                     new ProjectsFounds("IClare", 2_750_000.,15,60.,"Engineering", Month.of(48)),
