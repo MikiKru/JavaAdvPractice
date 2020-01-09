@@ -13,5 +13,5 @@ public class ProjectsFounds {
     private Integer noEmployees;
     private Double percentOfFounded;
     private String category;
-    private Month numberOfMonths;
+    private Integer numberOfMonths;
 }

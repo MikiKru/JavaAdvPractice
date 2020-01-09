@@ -93,7 +93,7 @@ public class PizzaController {
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
         pc.groupPizzasByPrice().forEach((key, value) -> System.out.println(key + " : " + value));
-        pc.iLikeMeatOrderByMeatIngredients().forEach(pizza -> System.out.printf("%15s | %10d | %-s \n",
+        pc.iLikeMeatOrderByMeatIngredients().forEach(pizza -> System.out.printf("%15s | %10d | %s \n",
                 pizza,
                 pc.calculatePizzaPrice(pizza),
                 pc.getPizzaWithMeatIngredients(pizza)));
