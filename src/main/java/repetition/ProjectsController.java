@@ -1,5 +1,8 @@
 package repetition;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+
 // Wykorzystujemy STRAEAM API LAMBDA I OPTIONAL
 public class ProjectsController implements Projects {
     // metoda wypisująca wszystkie projekty
@@ -10,11 +13,22 @@ public class ProjectsController implements Projects {
     }
     // metoda zwracająca projekty posortowane po budżecie max-min
     public List<ProjectsFounds> getProjectsOrderByBudgetDESC(){
+        return projects.stream()                                                                            // zamiana na STREAM
+                .sorted(Comparator.comparing(ProjectsFounds::getBudget).reversed())                         // sortowania DESC
+                .collect(Collectors.toList());                                                              // zwróć listę
+    }
+    // metoda zwracająca projekty posortowane po budżecie min-max tylko kategorii IT i Engineering
+    public List<ProjectsFounds> getProjectsOrderByBudgetASCWithCategoryItAndEngineering(){
         return 
     }
 
     public static void main(String[] args) {
         ProjectsController pc = new ProjectsController();
-        pc.getAllProjects();
+        pc.getProjectsOrderByBudgetDESC().stream()
+                .forEach(projectsFounds -> System.out.printf("Acronim: %-25s Budget: %20.2f PLN \n",
+                        projectsFounds.getAcronim(),
+                        projectsFounds.getBudget()));
+        //        pc.getAllProjects();
+
     }
 }
