@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d273d56-1f11-44e0-bcee-121d07894e4d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/repetition/Projects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repetition/Projects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repetition/ProjectsFounds.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repetition/ProjectsFounds.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/stream_repetition/PizzaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/stream_repetition/PizzaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repetition/ProjectsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repetition/ProjectsController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -15,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.5092437">
+    <splitter split-orientation="vertical" split-proportion="0.59379613">
       <split-first>
         <leaf>
           <file pinned="false" current-in-tab="false">
@@ -33,8 +31,11 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/repetition/ProjectsController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="22">
-                  <caret line="5" column="27" lean-forward="true" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+                <state relative-caret-position="152">
+                  <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
+                  <folding>
+                    <element signature="e#519#520#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -123,10 +124,10 @@
         <option value="$PROJECT_DIR$/src/main/java/consumer_producer/Producer.java" />
         <option value="$PROJECT_DIR$/src/main/java/consumer_producer/Consumer.java" />
         <option value="$PROJECT_DIR$/src/main/java/consumer_producer/ConsumerProducerParallel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/repetition/ProjectsController.java" />
         <option value="$PROJECT_DIR$/src/main/java/stream_repetition/PizzaController.java" />
         <option value="$PROJECT_DIR$/src/main/java/repetition/Projects.java" />
         <option value="$PROJECT_DIR$/src/main/java/repetition/ProjectsFounds.java" />
+        <option value="$PROJECT_DIR$/src/main/java/repetition/ProjectsController.java" />
       </list>
     </option>
   </component>
@@ -225,7 +226,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1578590218433" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1578590589836" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
@@ -330,12 +331,12 @@
       <updated>1578415694481</updated>
       <workItem from="1578415699368" duration="9548000" />
       <workItem from="1578495617184" duration="11049000" />
-      <workItem from="1578568754680" duration="7422000" />
+      <workItem from="1578568754680" duration="8236000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28019000" />
+    <option name="totallyTimeSpent" value="28833000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -350,7 +351,7 @@
       <window_info content_ui="combo" id="Project" order="6" weight="0.24630873" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.15722379" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.04107649" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.15580736" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -607,8 +608,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/repetition/ProjectsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="5" column="27" lean-forward="true" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+        <state relative-caret-position="152">
+          <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
+          <folding>
+            <element signature="e#519#520#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
