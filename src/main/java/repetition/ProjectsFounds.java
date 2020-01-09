@@ -14,4 +14,9 @@ public class ProjectsFounds {
     private Double percentOfFounded;
     private String category;
     private Integer numberOfMonths;
+
+    // metoda zwracająca kwotę dofinansowanie projektu
+    public Double getFoundByProject(){
+        return getBudget() * (getPercentOfFounded()/100);
+    }
 }

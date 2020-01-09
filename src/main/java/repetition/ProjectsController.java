@@ -25,14 +25,36 @@ public class ProjectsController implements Projects {
                 .sorted(Comparator.comparing(ProjectsFounds::getBudget))                                    // sortujemy po budżecie
                 .collect(Collectors.toList());                                                              //zwracamy listę
     }
+    // metoda zwracająca projekt z najwyższym dofinansowaniem
+    public ProjectsFounds getProjectWithMaxFound(){
+        return projects.stream()
+                .sorted(Comparator.comparing(ProjectsFounds::getFoundByProject).reversed()) // sortowanie po budżecie DESC
+                .collect(Collectors.toList())                                       // zapis do listy
+                .get(0);                                                            // pobranie pierwszego elementu
+
+    }
+    public ProjectsFounds getProjectWithMaxFound2(){
+        return projects.stream()
+                .max(Comparator.comparing(ProjectsFounds::getFoundByProject))       // zwraca wartość max opakowaną kontenerem Optional
+                .get();                                                             // get pobiera wartośc z Optionala
+    }
+    // metoda zwracająca projekt z najkrótszym czasem trwania
+
+    // metoda zwracająca całkowitą kwotę dofinansowania dla wszystkich projektów
+
+
 
     public static void main(String[] args) {
         ProjectsController pc = new ProjectsController();
-//        pc.getProjectsOrderByBudgetDESC().stream()
+        System.out.printf("%s %.2fPLN %.2fPLN\n",
+                pc.getProjectWithMaxFound2().getAcronim(),
+                pc.getProjectWithMaxFound2().getBudget(),
+                pc.getProjectWithMaxFound2().getFoundByProject());
+        //        pc.getProjectsOrderByBudgetDESC().stream()
 //                .forEach(projectsFounds -> System.out.printf("Acronim: %-25s Budget: %20.2f PLN \n",
 //                        projectsFounds.getAcronim(),
 //                        projectsFounds.getBudget()));
         //        pc.getAllProjects();
-                    pc.getProjectsOrderByBudgetASCWithCategoryItAndEngineering().forEach(System.out::println);
+//                    pc.getProjectsOrderByBudgetASCWithCategoryItAndEngineering().forEach(System.out::println);
     }
 }
